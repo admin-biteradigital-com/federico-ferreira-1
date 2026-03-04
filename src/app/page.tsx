@@ -12,8 +12,8 @@ const cvData = {
       emailLink: "mailto:ferreiramartirena@gmail.com",
       phone: "092 298 225",
       phoneLink: "tel:+59892298225",
-      location: "Juan Paullier 1906/003, MVD",
-      locationLink: "https://maps.app.goo.gl/WCDaBHGDFmhjjPxR9",
+      location: "Juan Paullier 1906, CP 11800 Departamento de Montevideo, Uruguay",
+      locationLink: "https://maps.app.goo.gl/FFhAwM4pm3jXs9Mo7",
       linkedin: "linkedin.com/in/federicomf",
       linkedinLink: "https://linkedin.com/in/federicomf"
     },
@@ -22,7 +22,7 @@ const cvData = {
       experience: "Experience",
       education: "Education",
       skills: "Skills",
-      codedWith: "Coded with Next.js & TailwindCSS."
+      codedWith: "& Bitera Digital SAS. Developed by Bitera Digital SAS."
     },
     experience: [
       {
@@ -85,8 +85,8 @@ const cvData = {
       emailLink: "mailto:ferreiramartirena@gmail.com",
       phone: "092 298 225",
       phoneLink: "https://wa.me/59892298225",
-      location: "Juan Paullier 1906/003, MVD",
-      locationLink: "https://maps.app.goo.gl/WCDaBHGDFmhjjPxR9",
+      location: "Juan Paullier 1906, CP 11800 Departamento de Montevideo, Uruguay",
+      locationLink: "https://maps.app.goo.gl/FFhAwM4pm3jXs9Mo7",
       linkedin: "linkedin.com/in/federicomf",
       linkedinLink: "https://linkedin.com/in/federicomf"
     },
@@ -95,7 +95,7 @@ const cvData = {
       experience: "Experiencia",
       education: "Educación",
       skills: "Competencias",
-      codedWith: "Desarrollado con Next.js & TailwindCSS."
+      codedWith: "& Bitera Digital SAS. Desarrollado por Bitera Digital SAS."
     },
     experience: [
       {
@@ -275,7 +275,7 @@ export default function Home() {
         <div className="w-10 h-10 flex items-center justify-center rounded-full bg-slate-800 border border-slate-700 relative -top-5">
           <span className="text-sky-400 font-bold">FF</span>
         </div>
-        <p className="hover:text-slate-400 transition-colors">© {new Date().getFullYear()} Federico Ferreira. {data.sections.codedWith}</p>
+        <p className="hover:text-slate-400 transition-colors">© {new Date().getFullYear()} Federico Ferreira {data.sections.codedWith}</p>
       </footer>
     </main>
   );
