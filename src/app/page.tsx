@@ -22,7 +22,7 @@ const cvData = {
       experience: "Experience",
       education: "Education",
       skills: "Skills",
-      codedWith: "& Bitera Digital SAS. Developed by Bitera Digital SAS."
+      codedWith: "All rights reserved by Federico Martirena Ferreira and Bitera Digital."
     },
     experience: [
       {
@@ -69,16 +69,15 @@ const cvData = {
       {
         degree: "Automotive Mechanics",
         institution: "UTU, Montevideo",
-        period: "Completed"
       }
     ],
     skills: [
-      "Planning & Organization", "File Management", "Advanced MS Office", "Teamwork", "Customer Service", "Problem Solving"
+      "Rigorous Organization", "Effective Communication", "Adaptability & Flexibility", "Emotional Intelligence", "Problem Solving & Critical Thinking", "Teamwork", "Leadership", "Time Management", "Resilience", "Discipline", "Spirit of Sacrifice", "Android Mobile Devices", "Windows Computers", "Document Drafting & Writing"
     ]
   },
   es: {
     name: "Federico Ferreira",
-    role: "Asistente Administrativo / Customer Service",
+    role: "Asistente Administrativo / Atención al cliente",
     summary: "Profesional con formación en Historia y reciente capacitación como Asistente Administrativo. Experiencia en atención al cliente y tareas administrativas, con habilidades en análisis, organización y resolución de problemas. Me destaco por mi eficiencia, atención al detalle y rápida adaptación a nuevos desafíos. Comprometido con el aprendizaje continuo y el trabajo en equipo, busco aportar valor en entornos dinámicos.",
     contact: {
       email: "ferreiramartirena@gmail.com",
@@ -95,7 +94,7 @@ const cvData = {
       experience: "Experiencia",
       education: "Educación",
       skills: "Competencias",
-      codedWith: "& Bitera Digital SAS. Desarrollado por Bitera Digital SAS."
+      codedWith: "Todos los derechos reservados para Federico Martirena Ferreira y Bitera Digital."
     },
     experience: [
       {
@@ -105,7 +104,7 @@ const cvData = {
         description: "Gestión de reservas. Promoción de los lugares de interés y los productos locales. Diseño de itinerarios turísticos para grupos de distintas edades y número.",
       },
       {
-        role: "Liveodds Analist Operator",
+        role: "Operador Analista de Cuotas en Vivo",
         company: "SportRadar LATAM, Zonamerica",
         period: "Oct 2020 - Mar 2021",
         description: "Recolectar información deportiva a tiempo real para su uso por parte de terceras empresas. Controlar minuto a minuto los distintos partidos, ajustando los constantes cambios de cuotas de la manera más rápida y eficaz posible. Coordinar con scouts a tiempo real el seguimiento de los partidos.",
@@ -117,7 +116,7 @@ const cvData = {
         description: "Brindar atención y asesoramiento a los clientes vía telefónica y presencial. Manejo del sistema operativo PSIG. Encargado administrativo del stock de equipos a reparar/reparados - Presupuestación de trabajos a clientes. Brindar ayuda en la coordinación de servicios y de mantenimiento de equipos.",
       },
       {
-        role: "Customer Service Agent",
+        role: "Agente de Atención al Cliente",
         company: "APAC / EGS / Alorica",
         period: "Sep 2013 - Oct 2018",
         description: "Brindar atención y asesoramiento a los clientes sobre la compra y el servicio post-venta, en habla inglesa. Brindar ayuda en el entrenamiento de los nuevos agentes.",
@@ -142,141 +141,222 @@ const cvData = {
       {
         degree: "Mecánica Automotriz",
         institution: "UTU, Montevideo",
-        period: "Completado"
       }
     ],
     skills: [
-      "Planificación y Organización", "Gestión de Archivos", "MS Office Avanzado", "Trabajo en Equipo", "Atención al Cliente", "Resolución de Problemas"
+      "Organización Rigurosa", "Comunicación Efectiva", "Adaptabilidad/Flexibilidad", "Inteligencia Emocional", "Resolución de Problemas y Pensamiento Crítico", "Trabajo en Equipo", "Liderazgo", "Gestión del Tiempo", "Resiliencia", "Disciplina", "Espíritu de Sacrificio", "Uso de dispositivos móviles Android", "Uso de computadoras con Windows", "Redacción de Documentos"
     ]
   }
 };
+
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function Home() {
   const [lang, setLang] = useState<"en" | "es">("en");
   const data = cvData[lang];
 
+  // Scroll animations for the rolling jeep
+  const { scrollYProgress } = useScroll();
+  const xJeep = useTransform(scrollYProgress, [0, 1], ["85vw", "-45vw"]);
+
   return (
-    <main className="min-h-screen container mx-auto px-6 py-12 max-w-5xl">
+    <main className="min-h-screen relative overflow-hidden bg-white text-slate-800 font-sans">
+      
+      {/* Rolling Jeep Blueprint (Scroll parallax) */}
+      <motion.div 
+        className="fixed -bottom-10 z-0 pointer-events-none opacity-20"
+        style={{ 
+          backgroundImage: "url('/minimalist_jeep_blueprint.png')",
+          backgroundSize: "contain",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center bottom",
+          width: "800px",
+          height: "500px",
+          x: xJeep,
+        }}
+      />
 
-      {/* Language Toggle */}
-      <div className="flex justify-end mb-8 animate-fade-in-up">
-        <div className="flex bg-slate-800/80 border border-slate-700 rounded-full p-1 backdrop-blur-sm">
-          <button
-            onClick={() => setLang("en")}
-            className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${lang === "en" ? "bg-sky-500 text-white shadow-md" : "text-slate-400 hover:text-white"}`}
-          >
-            EN
-          </button>
-          <button
-            onClick={() => setLang("es")}
-            className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${lang === "es" ? "bg-sky-500 text-white shadow-md" : "text-slate-400 hover:text-white"}`}
-          >
-            ES
-          </button>
-        </div>
-      </div>
-
-      {/* Header Section */}
-      <header className="flex flex-col md:flex-row items-center md:items-start gap-10 mb-24 animate-fade-in-up">
-        <div className="w-48 h-48 rounded-3xl border border-slate-700 overflow-hidden relative shadow-2xl shrink-0 bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center animate-pulse-slow rotate-3 hover:rotate-0 transition-transform duration-500">
-          <div className="text-6xl text-sky-400 font-bold opacity-50">FF</div>
-        </div>
-
-        <div className="text-center md:text-left space-y-5 pt-4">
-          <h1 className="text-5xl md:text-7xl w-full font-bold tracking-tight text-gradient mb-2">{data.name}</h1>
-          <p className="text-xl md:text-2xl text-[var(--secondary)] font-medium">{data.role}</p>
-          <div className="flex flex-wrap justify-center md:justify-start gap-6 text-sm text-slate-300 mt-6 bg-slate-800/50 p-4 rounded-xl border border-slate-700/50 backdrop-blur-sm">
-            <a href={data.contact.emailLink} className="flex items-center gap-2 hover:text-sky-300 transition-colors group">
-              <span className="text-sky-400 text-lg group-hover:scale-110 transition-transform">✉</span> {data.contact.email}
-            </a>
-            <a href={data.contact.phoneLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-sky-300 transition-colors group">
-              <span className="text-sky-400 text-lg group-hover:scale-110 transition-transform">📱</span> {data.contact.phone}
-            </a>
-            <a href={data.contact.locationLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-sky-300 transition-colors group">
-              <span className="text-sky-400 text-lg group-hover:scale-110 transition-transform">📍</span> {data.contact.location}
-            </a>
-            <a href={data.contact.linkedinLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-sky-300 transition-colors group">
-              <span className="text-sky-400 text-lg group-hover:scale-110 transition-transform">🔗</span> {data.contact.linkedin}
-            </a>
+      <div className="container mx-auto px-6 py-12 max-w-5xl relative z-10">
+        {/* Language Toggle */}
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="flex justify-end mb-16"
+        >
+          <div className="flex bg-white/70 border border-slate-200 rounded-sm p-1 shadow-sm backdrop-blur-md">
+            <button
+              onClick={() => setLang("en")}
+              className={`px-5 py-2 text-xs font-bold uppercase tracking-widest transition-all ${lang === "en" ? "bg-[#0f3c5f] text-white" : "text-slate-500 hover:text-slate-900 hover:bg-slate-100"}`}
+            >
+              EN
+            </button>
+            <button
+              onClick={() => setLang("es")}
+              className={`px-5 py-2 text-xs font-bold uppercase tracking-widest transition-all ${lang === "es" ? "bg-[#0f3c5f] text-white" : "text-slate-500 hover:text-slate-900 hover:bg-slate-100"}`}
+            >
+              ES
+            </button>
           </div>
-        </div>
-      </header>
+        </motion.div>
 
-      {/* Summary Section */}
-      <section className="mb-20 animate-fade-in-up" style={{ animationDelay: '150ms' }}>
-        <h2 className="text-3xl font-semibold mb-8 flex items-center gap-4">
-          <span className="w-12 h-[2px] bg-gradient-to-r from-sky-400 to-transparent"></span> {data.sections.profile}
-        </h2>
-        <div className="glass-card p-8 md:p-10">
-          <p className="text-lg md:text-xl leading-relaxed text-slate-300 font-light">{data.summary}</p>
-        </div>
-      </section>
+        {/* Header Section */}
+        <motion.header 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="flex flex-col md:flex-row items-center md:items-start gap-12 mb-32"
+        >
+          <div className="w-48 h-48 border-4 border-[#0f3c5f] relative shadow-lg shrink-0 bg-slate-50 flex items-center justify-center transition-transform hover:-translate-y-2 duration-300">
+            {/* Absolute minimalist emblem */}
+            <div className="absolute inset-0 border-[1px] border-[#0f3c5f]/20 m-2" />
+            <div className="text-7xl text-[#0f3c5f] font-black tracking-tighter">FF</div>
+          </div>
 
-      {/* Experience Section */}
-      <section className="mb-20 animate-fade-in-up" style={{ animationDelay: '300ms' }}>
-        <h2 className="text-3xl font-semibold mb-10 flex items-center gap-4">
-          <span className="w-12 h-[2px] bg-gradient-to-r from-sky-400 to-transparent"></span> {data.sections.experience}
-        </h2>
-        <div className="space-y-8 flex flex-col items-center">
-          {data.experience.map((job, idx) => (
-            <div key={idx} className="glass-card p-8 md:p-10 group relative w-full">
-              <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-sky-400 to-indigo-500 rounded-l-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
-              <div className="flex flex-col md:flex-row md:items-start justify-between mb-6 gap-4">
-                <div>
-                  <h3 className="text-2xl font-bold text-white group-hover:text-sky-400 transition-colors">{job.role}</h3>
-                  <p className="text-xl text-indigo-300 font-medium mt-1">{job.company}</p>
-                </div>
-                <div className="flex items-center">
-                  <span className="text-slate-400 font-mono text-sm px-4 py-2 bg-slate-900 rounded-full border border-slate-700 shadow-inner group-hover:border-slate-600 transition-colors">{job.period}</span>
-                </div>
-              </div>
-              <p className="text-slate-300 leading-relaxed text-lg font-light">{job.description}</p>
+          <div className="text-center md:text-left space-y-4 pt-2">
+            <h1 className="text-6xl md:text-8xl w-full font-black tracking-tight text-slate-900 uppercase">
+              {data.name.split(" ")[0]} <br/>
+              <span className="text-[#0f3c5f]">{data.name.split(" ")[1]}</span>
+            </h1>
+            <p className="text-lg md:text-xl text-[#47553f] font-semibold tracking-widest uppercase border-l-4 border-[#0f3c5f] pl-4 inline-block">{data.role}</p>
+            
+            <div className="flex flex-wrap justify-center md:justify-start gap-4 text-xs font-bold tracking-widest text-[#0f3c5f] mt-8">
+              <a href={data.contact.emailLink} className="flex items-center gap-2 hover:bg-[#0f172a] hover:text-white px-4 py-2 border border-[#0f3c5f] transition-colors">
+                EMAIL
+              </a>
+              <a href={data.contact.phoneLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:bg-[#0f172a] hover:text-white px-4 py-2 border border-[#0f3c5f] transition-colors">
+                PHONE
+              </a>
+              <a href={data.contact.locationLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:bg-[#0f172a] hover:text-white px-4 py-2 border border-[#0f3c5f] transition-colors">
+                HQ
+              </a>
+              <a href={data.contact.linkedinLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:bg-[#0f172a] hover:text-white px-4 py-2 border border-[#0f3c5f] transition-colors">
+                LINKEDIN
+              </a>
             </div>
-          ))}
-        </div>
-      </section>
+          </div>
+        </motion.header>
 
-      {/* Two columns for Education & Skills */}
-      <div className="grid md:grid-cols-2 gap-10 animate-fade-in-up" style={{ animationDelay: '450ms' }}>
-        {/* Education Section */}
-        <section>
-          <h2 className="text-3xl font-semibold mb-8 flex items-center gap-4">
-            <span className="w-12 h-[2px] bg-gradient-to-r from-sky-400 to-transparent"></span> {data.sections.education}
-          </h2>
-          <div className="space-y-6">
-            {data.education.map((edu, idx) => (
-              <div key={idx} className="glass-card p-8 border-t-4 border-t-sky-400 hover:border-t-indigo-400">
-                <h3 className="text-xl font-bold text-white mb-2">{edu.degree}</h3>
-                <p className="text-indigo-300 text-lg mb-3">{edu.institution}</p>
-                <p className="text-sm text-slate-400 font-mono inline-block bg-slate-900 px-3 py-1 rounded-md">{edu.period}</p>
-              </div>
+        {/* Summary Section */}
+        <motion.section 
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="mb-24"
+        >
+          <div className="flex items-center gap-6 mb-8">
+            <span className="text-3xl font-black text-[#0f3c5f] tracking-tighter">01.</span>
+            <h2 className="text-2xl font-bold uppercase tracking-widest text-slate-800">{data.sections.profile}</h2>
+            <div className="flex-grow h-[1px] bg-slate-200"></div>
+          </div>
+          <div className="glass-card p-10 md:p-12 relative overflow-hidden group">
+            <div className="absolute top-0 right-0 w-16 h-16 bg-[#0f3c5f]/5 -translate-y-1/2 translate-x-1/2 rotate-45 transform group-hover:bg-[#0f3c5f]/10 transition-colors" />
+            <p className="text-lg md:text-xl leading-relaxed text-slate-600 font-medium">{data.summary}</p>
+          </div>
+        </motion.section>
+
+        {/* Experience Section */}
+        <motion.section 
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="mb-24"
+        >
+          <div className="flex items-center gap-6 mb-12">
+            <span className="text-3xl font-black text-[#0f3c5f] tracking-tighter">02.</span>
+            <h2 className="text-2xl font-bold uppercase tracking-widest text-slate-800">{data.sections.experience}</h2>
+            <div className="flex-grow h-[1px] bg-slate-200"></div>
+          </div>
+          
+          <div className="space-y-6 flex flex-col items-center">
+            {data.experience.map((job, idx) => (
+              <motion.div 
+                key={idx} 
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                className="glass-card p-8 md:p-10 group relative w-full hover:border-[#0f3c5f]/30"
+              >
+                <div className="absolute top-0 left-0 w-1 h-full bg-[#0f3c5f] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div className="flex flex-col md:flex-row md:items-start justify-between mb-6 gap-4 border-b border-slate-100 pb-4">
+                  <div>
+                    <h3 className="text-2xl font-black text-slate-900 group-hover:text-[#0f3c5f] transition-colors">{job.role}</h3>
+                    <p className="text-lg text-[#47553f] font-bold mt-1 uppercase tracking-wider">{job.company}</p>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="text-slate-500 font-bold text-xs tracking-widest px-4 py-2 bg-slate-50 border border-slate-200 rounded-sm">{job.period}</span>
+                  </div>
+                </div>
+                <p className="text-slate-600 leading-relaxed text-base md:text-lg">{job.description}</p>
+              </motion.div>
             ))}
           </div>
-        </section>
+        </motion.section>
 
-        {/* Skills Section */}
-        <section>
-          <h2 className="text-3xl font-semibold mb-8 flex items-center gap-4">
-            <span className="w-12 h-[2px] bg-gradient-to-r from-sky-400 to-transparent"></span> {data.sections.skills}
-          </h2>
-          <div className="glass-card p-8 h-full">
-            <div className="flex flex-wrap gap-3">
-              {data.skills.map((skill, idx) => (
-                <span key={idx} className="px-4 py-2.5 bg-slate-900/80 border border-slate-700/50 rounded-xl text-slate-300 text-sm font-medium hover:bg-slate-800 hover:border-sky-400 hover:text-sky-300 hover:shadow-[0_0_10px_var(--accent-glow)] transition-all cursor-crosshair">
-                  {skill}
-                </span>
+        {/* Two columns for Education & Skills */}
+        <div className="grid md:grid-cols-2 gap-12">
+          {/* Education Section */}
+          <motion.section
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="flex items-center gap-6 mb-8">
+              <span className="text-2xl font-black text-[#0f3c5f] tracking-tighter">03.</span>
+              <h2 className="text-xl font-bold uppercase tracking-widest text-slate-800">{data.sections.education}</h2>
+            </div>
+            <div className="space-y-4">
+              {data.education.map((edu, idx) => (
+                <div key={idx} className="glass-card p-6 border-l-4 border-l-[#47553f] hover:border-l-[#0f3c5f]">
+                  <h3 className="text-lg font-black text-slate-900 mb-1">{edu.degree}</h3>
+                  <p className="text-[#0f3c5f] text-sm font-bold uppercase tracking-wider mb-3">{edu.institution}</p>
+                  <p className="text-xs text-slate-500 font-bold tracking-widest inline-block bg-slate-100 px-3 py-1">{edu.period}</p>
+                </div>
               ))}
             </div>
-          </div>
-        </section>
-      </div>
+          </motion.section>
 
-      <footer className="mt-32 pb-10 border-t border-slate-800/80 text-center text-slate-500 text-sm flex flex-col items-center gap-4">
-        <div className="w-10 h-10 flex items-center justify-center rounded-full bg-slate-800 border border-slate-700 relative -top-5">
-          <span className="text-sky-400 font-bold">FF</span>
+          {/* Skills Section */}
+          <motion.section
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <div className="flex items-center gap-6 mb-8">
+              <span className="text-2xl font-black text-[#0f3c5f] tracking-tighter">04.</span>
+              <h2 className="text-xl font-bold uppercase tracking-widest text-slate-800">{data.sections.skills}</h2>
+            </div>
+            <div className="glass-card p-8 h-full bg-slate-50/50">
+              <div className="flex flex-wrap gap-2">
+                {data.skills.map((skill, idx) => (
+                  <span key={idx} className="px-4 py-2 bg-white border border-slate-200 text-[#0f3c5f] text-xs font-bold tracking-widest uppercase hover:bg-[#0f172a] hover:border-[#0f172a] hover:text-white transition-all cursor-crosshair">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </motion.section>
         </div>
-        <p className="hover:text-slate-400 transition-colors">© {new Date().getFullYear()} Federico Ferreira {data.sections.codedWith}</p>
-      </footer>
+
+        <motion.footer 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="mt-32 pt-10 border-t border-slate-200 text-center text-slate-400 text-xs font-bold tracking-widest uppercase flex flex-col items-center gap-6"
+        >
+          <div className="w-12 h-12 flex items-center justify-center bg-white border-2 border-[#0f3c5f] relative -top-16 shadow-sm">
+            <span className="text-[#0f3c5f] font-black">FF</span>
+          </div>
+          <p className="hover:text-slate-800 transition-colors cursor-default">
+            © {new Date().getFullYear()} {data.sections.codedWith}
+          </p>
+        </motion.footer>
+      </div>
     </main>
   );
 }

@@ -7,6 +7,18 @@ const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit' });
 export const metadata: Metadata = {
   title: 'Federico Ferreira | Curriculum Vitae',
   description: 'Professional Curriculum Vitae of Federico Ferreira.',
+  metadataBase: new URL('https://bitera-digital-federico-cv.pages.dev'), // Replace with actual domain if necessary
+  openGraph: {
+    title: 'Federico Ferreira | Curriculum Vitae',
+    description: 'Professional Curriculum Vitae of Federico Ferreira.',
+    images: '/og-image.png',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Federico Ferreira | Curriculum Vitae',
+    description: 'Professional Curriculum Vitae of Federico Ferreira.',
+    images: ['/og-image.png'],
+  },
 };
 
 export default function RootLayout({
